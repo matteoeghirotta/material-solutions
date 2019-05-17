@@ -1,0 +1,132 @@
+/*
+  elm-hot creates an additional div wrapper around the app to make HMR possible.
+  This could break styling in development mode if you are using Elm UI.
+
+  More context in the issue:
+    https://github.com/halfzebra/create-elm-app/issues/320
+*/
+[data-elm-hot="true"] {
+    height: inherit;
+}
+
+body {
+    font-family: 'Roboto Condensed', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    text-align: center;
+    color: #293c4b;
+    background-color: #eeeeee;
+}
+
+div.header {
+    height: 8em;
+    margin: 0;
+}
+
+div.header > h1 {
+    font-size: 6em;
+    display: block;
+    float: left;    
+    margin:0;
+    margin-left: 0.5em;
+    animation-name: fade-opacity;
+    animation-duration: 2.25s;
+}
+
+@keyframes fade-opacity {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+div.header > img.logo {
+    height: 100%;
+    min-height: 100%;
+    float:left;
+    padding: 0;
+    margin: 0;
+    clear: both;
+    animation-name: rotate-cw-logo;
+    animation-duration: 0.25s;
+}
+
+div.header > img.clicked {
+    height: 100%;
+    min-height: 100%;
+    float:left;
+    clear: both;
+    padding: 0;
+    top: 0;
+    left:0;
+    animation-name: rotate-cc-logo;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotate-cc-logo {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(90deg); }
+}
+
+@keyframes rotate-cw-logo {
+    from { transform: rotate(90deg); }
+    to { transform: rotate(0deg); }
+}
+
+div.menu {
+    display: block;
+    float: left;
+    height: 8em;
+    margin: 0.25em;
+    font-size: 1.75em;
+    /* font-size: 1.25em; */
+    /* background: #0000ff; */
+}
+
+div.menu > ul {
+    list-style: none;
+    margin: 0;
+    float: left;
+    padding: 0;
+    margin: 0.5em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+div.menu a:hover {
+    text-decoration: underline;
+}
+
+div.menu li {
+    text-align: left;
+}
+
+div.menu.active {
+    animation-name: show-menu;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+div.menu.hidden {
+    animation-name: hide-menu;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-menu {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0%); }
+}
+
+@keyframes hide-menu {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-200%); }
+}
+
+div.content {
+    display: block;
+    float: left;
+    margin: 12px;
+    /* background: #ff0000; */
+}
