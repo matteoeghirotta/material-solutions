@@ -9,7 +9,7 @@ import Header
 import Menu
 import Menu.Status
 import Page
-
+import Browser.Hash as Hash
 
 ---- MODEL ----
 
@@ -25,7 +25,8 @@ type alias Model =
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init _ url navKey=
     ( { header = { headerClass = "logo" }
-      , menu   = { entries = [ "Products"
+      , menu   = { entries = [ "Home"
+                             , "Products"
                              , "People"
                              , "Contacts"
                              ]
@@ -59,15 +60,14 @@ update msg model =
         LinkClicked urlRequest ->
             case urlRequest of
                 Browser.Internal url ->                    
-                    let page =
-                            case (Url.toString url) of
-                                "Home"     -> Page.Home
-                                "Products" -> Page.Products
-                                "People"   -> Page.People
-                                "Contacts" -> Page.Contacts
-                                _          -> -- Debug.log ("URL: " ++ (Url.toString url)) 
-                                              Page.Home
-                    in
+                    -- let page =
+                    --         case (Url.toString url) of
+                    --             "#Home"     -> Page.Home
+                    --             "#Products" -> Page.Products
+                    --             "#People"   -> Page.People
+                    --             "#Contacts" -> Page.Contacts
+                    --             _          ->  Page.Home
+                    -- in
                     ( model, Nav.pushUrl model.key (Url.toString url) )
                 Browser.External href ->
                     ( model, Nav.load href )
@@ -82,6 +82,7 @@ update msg model =
                         , Cmd.none
                         )
                     Nothing ->
+                        -- Debug.log ("URL: " ++ (Url.toString url))
                         ( { model | url = url, page = Page.Home }
                         , Cmd.none
                         )
@@ -99,7 +100,8 @@ view model =
 
 main : Program () Model Msg
 main =
-    Browser.application
+    -- Browser.application
+    Hash.application
         { init = init
         , onUrlChange = UrlChanged
         , onUrlRequest = LinkClicked

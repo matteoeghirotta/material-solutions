@@ -21,6 +21,6 @@ render header menu =
               ]
         , Menu.toHtml menu
         , div [ class "content" ]
-            [ p [] [text "PRODUCTS"]             
+            [ p [] [text "Products"]             
             ]
         ]

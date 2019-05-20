@@ -11,7 +11,7 @@ type alias Menu =
     }
 
 toLi : String -> Html Msg
-toLi name = li [] [ a [ href ("/" ++ name) ] [ text name ] ]
+toLi name = li [] [ a [ href ("#" ++ name) ] [ text name ] ]
 
 toHtml : Menu -> Html Msg
 toHtml menu =
